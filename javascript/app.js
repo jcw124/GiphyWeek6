@@ -49,13 +49,16 @@ console.log(queryURL);
 
     var nameDiv = $("<nameDiv>");
 
-    var p = $("<p>").text("Rating: " + results[i].rating);
+    var p = $("<p>").text("Rating: " + results[i].images.rating);
 
 
     var nameImage = $("<img>");
 
-    nameImage.attr("src", results[i].images.fixed_height.url);
     nameImage.attr("src", results[i].images.fixed_height_still.url);
+    nameImage.attr("data-still", results[i].images.fixed_height_still.url);
+    nameImage.attr("data-animate", results[i].images.fixed_height.url); 
+    nameImage.attr("data-state", "still"); 
+    nameImage.addClass("gif"); 
 
      nameDiv.append(p);
         nameDiv.append(nameImage);
@@ -75,8 +78,10 @@ $(".gif").on("click", function() {
   if (state === "still") {
     $(this).attr("src", $(this).attr("data-animate"));
     $(this).attr("data-state", "animate");
+    console.log(this);
   } else {
     $(this).attr("src", $(this).attr("data-still"));
     $(this).attr("data-state", "still");
+    console.log(this);
   }
 });
