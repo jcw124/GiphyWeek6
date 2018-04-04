@@ -3,8 +3,7 @@ $(document).ready(function () {});
 //define variables
 var topics=["Beyonce","Jay-Z","Outkast","India Arie","Prince","Kendrick Lamar"];
 var topic;
-
-
+var p;
 
 //create buttons for default topics
 function createButtons() {
@@ -18,6 +17,7 @@ function createButtons() {
   }
 }
 
+
 //search box to add another topic and submit
 $("#add-topic").on("click", function (event){
   event.preventDefault();
@@ -27,6 +27,7 @@ $("#add-topic").on("click", function (event){
 });
 
 createButtons();
+
 
 //request to giphy api
 $("button").on("click", function() {
@@ -49,8 +50,11 @@ console.log(queryURL);
 
     var nameDiv = $("<nameDiv>");
 
-    var p = $("<p>").text("Rating: " + results[i].images.rating);
-
+    var p = $("<p>").text("Rating: " + results[i].rating);
+    console.log(p);
+    console.log(results[i].images.fixed_height_still.url);
+    console.log(results[i].images.fixed_height_still.url);
+    console.log(results[i].images.fixed_height.url);
 
     var nameImage = $("<img>");
 
@@ -59,13 +63,12 @@ console.log(queryURL);
     nameImage.attr("data-animate", results[i].images.fixed_height.url); 
     nameImage.attr("data-state", "still"); 
     nameImage.addClass("gif"); 
-
-     nameDiv.append(p);
+        
         nameDiv.append(nameImage);
+        nameDiv.append(p);
 
-        $("#images").prepend(nameImage);
+        $("#images").prepend(nameImage, p);
   }
-
 });
 });
 
@@ -78,10 +81,9 @@ $(".gif").on("click", function() {
   if (state === "still") {
     $(this).attr("src", $(this).attr("data-animate"));
     $(this).attr("data-state", "animate");
-    console.log(this);
   } else {
     $(this).attr("src", $(this).attr("data-still"));
     $(this).attr("data-state", "still");
-    console.log(this);
   }
 });
+

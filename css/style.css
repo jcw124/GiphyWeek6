@@ -22,3 +22,9 @@ header{
 body{
     background: url(../images/notes.png);
 }
+img{
+    margin: 15px;
+}
+p{
+    background-color: antiquewhite;
+}
