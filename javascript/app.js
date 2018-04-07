@@ -5,6 +5,8 @@ var topics=["Beyonce","Jay-Z","Outkast","India Arie","Prince","Kendrick Lamar"];
 var topic;
 var p;
 
+
+
 //create buttons for default topics
 function createButtons() {
   $("#topics-view").empty();
@@ -30,8 +32,10 @@ createButtons();
 
 
 //request to giphy api
-$("button").on("click", function() {
+$(document).on("click",".topic", function(){
   var name = $(this).attr("data-name");
+  console.log("value on line 37 " + name);
+  
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + name + "&api_key=dc6zaTOxFJmzC&limit=10&rating=PG&lang=en";
 console.log(queryURL);
   
@@ -72,7 +76,9 @@ console.log(queryURL);
 });
 });
 
-$(".gif").on("click", function() {
+
+
+  $(document).on("click",".gif", function(){
   // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
   var state = $(this).attr("data-state");
   // If the clicked image's state is still, update its src attribute to what its data-animate value is.
